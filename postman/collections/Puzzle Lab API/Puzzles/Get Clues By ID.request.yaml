@@ -1,0 +1,5 @@
+$kind: http-request
+method: GET
+url: '{{baseUrl}}/api/getCluesById/{{puzzleId}}/clues'
+description: 'Returns the clues for the current stage of a puzzle. Returns 403 if locked, 404 if not found, 409 if already solved.'
+order: 3000

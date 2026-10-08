@@ -1,0 +1,7 @@
+$kind: collection
+name: Puzzle Lab API
+variables:
+  - key: baseUrl
+    value: 'http://localhost:3001'
+  - key: puzzleId
+    value: '1'

@@ -1,0 +1,14 @@
+$kind: http-request
+method: PATCH
+url: '{{baseUrl}}/api/requestHints/{{puzzleId}}/hint'
+description: 'Requests the next available hint for a specific stage. Returns `{ hintId, hint, puzzle }`. Returns 403 if locked, 404 if not found, 409 if already solved, stage not current, or no hints remain.'
+order: 5000
+headers:
+  - key: Content-Type
+    value: application/json
+body:
+  type: json
+  content: |-
+    {
+      "stageId": 1
+    }

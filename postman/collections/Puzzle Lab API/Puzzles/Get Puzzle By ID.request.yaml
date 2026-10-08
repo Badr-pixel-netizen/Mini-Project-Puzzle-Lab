@@ -1,0 +1,5 @@
+$kind: http-request
+method: GET
+url: '{{baseUrl}}/api/getPuzzleById/{{puzzleId}}'
+description: 'Returns full details of a puzzle by its ID. Returns 403 if the puzzle is locked (earlier puzzles not yet solved), 404 if not found.'
+order: 2000

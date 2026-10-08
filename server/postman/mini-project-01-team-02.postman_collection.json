@@ -1,0 +1,1157 @@
+{
+  "info": {
+    "name": "mini-project-01-team-02",
+    "description": "Five Puzzle Lab APIs, generated from server/controllers/puzzles.js. Main requests use successful inputs for a fresh Express server. Each request includes 200 - OK first, followed by every controller response branch. Duplicate status names distinguish scenarios through their original request descriptions. Base_URL includes /api/ and a trailing slash. Progress is shared in server memory and resets when Express restarts. Sending submitAnswer advances the stage, so requestHints stageId may need updating afterward. Saved examples do not prepopulate the live Send response panel; open the 200 - OK example or press Send. No authentication is required.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "Base_URL",
+      "value": "http://localhost:3001/api/",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "getAllPuzzles",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{Base_URL}}getAllPuzzles",
+        "description": "Lists all three puzzles with their shared progress and lock state. No request body.\n\nSaved examples cover every controller response branch. Examples sharing a status have the same requested name; open the example request description to see its scenario and setup. Examples are saved snapshots; Send runs against live server progress."
+      },
+      "response": [
+        {
+          "name": "200 - OK",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{Base_URL}}getAllPuzzles",
+            "description": "Fresh server: puzzle 1 unlocked, puzzles 2 and 3 locked."
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "[\n  {\n    \"id\": 1,\n    \"title\": \"The Heisenberg Formula\",\n    \"summary\": \"A missing batch recipe has locked down the superlab. Decipher chemical cues to restore system access.\",\n    \"locked\": false,\n    \"totalStages\": 3,\n    \"completedStages\": 0,\n    \"solved\": false\n  },\n  {\n    \"id\": 2,\n    \"title\": \"The Los Pollos Logistics\",\n    \"summary\": \"Intercepted distribution manifests hold the key to tracking hidden supply routes across the Southwest.\",\n    \"locked\": true,\n    \"totalStages\": 3,\n    \"completedStages\": 0,\n    \"solved\": false\n  },\n  {\n    \"id\": 3,\n    \"title\": \"The Desert Cache Protocol\",\n    \"summary\": \"A series of hidden physical markers and environmental clues in To'hajiilee lead to a buried vault.\",\n    \"locked\": true,\n    \"totalStages\": 3,\n    \"completedStages\": 0,\n    \"solved\": false\n  }\n]"
+        }
+      ]
+    },
+    {
+      "name": "getPuzzleById",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{Base_URL}}getPuzzleById/1",
+        "description": "Gets puzzle 1 and its current stage. A solved puzzle returns currentStage=null and finalReveal.\n\nSaved examples cover every controller response branch. Examples sharing a status have the same requested name; open the example request description to see its scenario and setup. Examples are saved snapshots; Send runs against live server progress."
+      },
+      "response": [
+        {
+          "name": "200 - OK",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{Base_URL}}getPuzzleById/1",
+            "description": "Puzzle 1 available at stage 1 on a fresh server."
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"id\": 1,\n  \"title\": \"The Heisenberg Formula\",\n  \"story\": \"You walk into the underground lab beneath the industrial laundry. The main control terminal is locked, and a timer is counting down. Walter left three encoded safety prompts across the lab equipment to ensure only someone with acute chemical knowledge can reboot the ventilation system.\",\n  \"totalStages\": 3,\n  \"completedStages\": 0,\n  \"solved\": false,\n  \"locked\": false,\n  \"currentStage\": {\n    \"id\": 1,\n    \"title\": \"Stage 1: The Periodic Combination\",\n    \"question\": \"What is the 4-digit security PIN to unlock the lab door terminal?\",\n    \"clues\": [\n      \"A sticky note on the barrel reads: 'Atomic number of Bromine (Br) followed by the atomic number of Barium (Ba)'.\",\n      \"The element chart on the wall shows: Bromine (Br) = 35, Barium (Ba) = 56.\"\n    ],\n    \"revealedHints\": [],\n    \"hintsRemaining\": 2\n  }\n}"
+        },
+        {
+          "name": "200 - OK",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{Base_URL}}getPuzzleById/1",
+            "description": "Puzzle 1 completed: finalReveal present and currentStage=null."
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"id\": 1,\n  \"title\": \"The Heisenberg Formula\",\n  \"story\": \"You walk into the underground lab beneath the industrial laundry. The main control terminal is locked, and a timer is counting down. Walter left three encoded safety prompts across the lab equipment to ensure only someone with acute chemical knowledge can reboot the ventilation system.\",\n  \"totalStages\": 3,\n  \"completedStages\": 3,\n  \"solved\": true,\n  \"locked\": false,\n  \"currentStage\": null,\n  \"finalReveal\": \"The terminal screen lights up green, showing 'VENTILATION RESTORED - SYSTEM READY'. The pressure drops back to safe levels just as footsteps echo down the lab stairs. You successfully bypassed the lockdown without blowing your cover.\"\n}"
+        },
+        {
+          "name": "400 - Bad Request",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{Base_URL}}getPuzzleById/0",
+            "description": "Invalid puzzle ID: send id=0."
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"message\": \"Invalid puzzle ID.\"\n}"
+        },
+        {
+          "name": "403 - Forbidden",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{Base_URL}}getPuzzleById/2",
+            "description": "Puzzle 2 is locked while puzzle 1 is unfinished. Start with a fresh server."
+          },
+          "status": "Forbidden",
+          "code": 403,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"message\": \"Complete all earlier puzzles before investigating this level.\"\n}"
+        },
+        {
+          "name": "404 - Not Found",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{Base_URL}}getPuzzleById/999",
+            "description": "Puzzle not found: send id=999."
+          },
+          "status": "Not Found",
+          "code": 404,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"message\": \"Puzzle not found.\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "getCluesById",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{Base_URL}}getCluesById/1/clues",
+        "description": "Returns the current stage clues as an array of strings. No request body.\n\nSaved examples cover every controller response branch. Examples sharing a status have the same requested name; open the example request description to see its scenario and setup. Examples are saved snapshots; Send runs against live server progress."
+      },
+      "response": [
+        {
+          "name": "200 - OK",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{Base_URL}}getCluesById/1/clues",
+            "description": "Puzzle 1 stage 1 clues on a fresh server."
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "[\n  \"A sticky note on the barrel reads: 'Atomic number of Bromine (Br) followed by the atomic number of Barium (Ba)'.\",\n  \"The element chart on the wall shows: Bromine (Br) = 35, Barium (Ba) = 56.\"\n]"
+        },
+        {
+          "name": "400 - Bad Request",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{Base_URL}}getCluesById/0/clues",
+            "description": "Invalid puzzle ID: send id=0."
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"message\": \"Invalid puzzle ID.\"\n}"
+        },
+        {
+          "name": "403 - Forbidden",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{Base_URL}}getCluesById/2/clues",
+            "description": "Puzzle 2 is locked while puzzle 1 is unfinished. Start with a fresh server."
+          },
+          "status": "Forbidden",
+          "code": 403,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"message\": \"Complete all earlier puzzles before investigating this level.\"\n}"
+        },
+        {
+          "name": "404 - Not Found",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{Base_URL}}getCluesById/999/clues",
+            "description": "Puzzle not found: send id=999."
+          },
+          "status": "Not Found",
+          "code": 404,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"message\": \"Puzzle not found.\"\n}"
+        },
+        {
+          "name": "409 - Conflict",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{Base_URL}}getCluesById/1/clues",
+            "description": "Puzzle 1 already solved: complete all three stages before sending."
+          },
+          "status": "Conflict",
+          "code": 409,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"message\": \"Puzzle already solved.\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "submitAnswer",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{Base_URL}}submitAnswer/1/answers",
+        "description": "Submits an answer for puzzle 1 stage 1. Default answer 3556 is correct on a fresh server. Correct answers advance shared progress; wrong answers return HTTP 200 with correct=false. Restart Express to reset progress.\n\nSaved examples cover every controller response branch. Examples sharing a status have the same requested name; open the example request description to see its scenario and setup. Examples are saved snapshots; Send runs against live server progress.",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"stageId\": 1,\n  \"answer\": \"3556\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "name": "200 - OK",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{Base_URL}}submitAnswer/1/answers",
+            "description": "Correct stage 1 answer advances puzzle 1 to stage 2.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"stageId\": 1,\n  \"answer\": \"3556\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"correct\": true,\n  \"puzzle\": {\n    \"id\": 1,\n    \"title\": \"The Heisenberg Formula\",\n    \"story\": \"You walk into the underground lab beneath the industrial laundry. The main control terminal is locked, and a timer is counting down. Walter left three encoded safety prompts across the lab equipment to ensure only someone with acute chemical knowledge can reboot the ventilation system.\",\n    \"totalStages\": 3,\n    \"completedStages\": 1,\n    \"solved\": false,\n    \"locked\": false,\n    \"currentStage\": {\n      \"id\": 2,\n      \"title\": \"Stage 2: The Encoded Alias Prompt\",\n      \"question\": \"What 10-letter codename decrypts the lead chemist's terminal identity?\",\n      \"clues\": [\n        \"The terminal login prompt displays an encrypted sequence: '8 - 5 - 9 - 19 - 5 - 14 - 2 - 5 - 18 - 7'.\",\n        \"A cipher key pinned to the wall reads: 'Convert numbers to letters using standard alphabet order (1=A, 2=B, 3=C ... 8=H, 9=I, 14=N, 18=R, 19=S)'.\"\n      ],\n      \"revealedHints\": [],\n      \"hintsRemaining\": 2\n    }\n  }\n}"
+        },
+        {
+          "name": "200 - OK",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{Base_URL}}submitAnswer/1/answers",
+            "description": "Wrong answer: correct=false and stage 1 remains current.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"stageId\": 1,\n  \"answer\": \"wrong\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"correct\": false,\n  \"puzzle\": {\n    \"id\": 1,\n    \"title\": \"The Heisenberg Formula\",\n    \"story\": \"You walk into the underground lab beneath the industrial laundry. The main control terminal is locked, and a timer is counting down. Walter left three encoded safety prompts across the lab equipment to ensure only someone with acute chemical knowledge can reboot the ventilation system.\",\n    \"totalStages\": 3,\n    \"completedStages\": 0,\n    \"solved\": false,\n    \"locked\": false,\n    \"currentStage\": {\n      \"id\": 1,\n      \"title\": \"Stage 1: The Periodic Combination\",\n      \"question\": \"What is the 4-digit security PIN to unlock the lab door terminal?\",\n      \"clues\": [\n        \"A sticky note on the barrel reads: 'Atomic number of Bromine (Br) followed by the atomic number of Barium (Ba)'.\",\n        \"The element chart on the wall shows: Bromine (Br) = 35, Barium (Ba) = 56.\"\n      ],\n      \"revealedHints\": [],\n      \"hintsRemaining\": 2\n    }\n  }\n}"
+        },
+        {
+          "name": "200 - OK",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{Base_URL}}submitAnswer/1/answers",
+            "description": "Correct final-stage answer solves puzzle 1 and returns finalReveal. First solve stages 1 and 2.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"stageId\": 3,\n  \"answer\": \"2145\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"correct\": true,\n  \"puzzle\": {\n    \"id\": 1,\n    \"title\": \"The Heisenberg Formula\",\n    \"story\": \"You walk into the underground lab beneath the industrial laundry. The main control terminal is locked, and a timer is counting down. Walter left three encoded safety prompts across the lab equipment to ensure only someone with acute chemical knowledge can reboot the ventilation system.\",\n    \"totalStages\": 3,\n    \"completedStages\": 3,\n    \"solved\": true,\n    \"locked\": false,\n    \"currentStage\": null,\n    \"finalReveal\": \"The terminal screen lights up green, showing 'VENTILATION RESTORED - SYSTEM READY'. The pressure drops back to safe levels just as footsteps echo down the lab stairs. You successfully bypassed the lockdown without blowing your cover.\"\n  }\n}"
+        },
+        {
+          "name": "400 - Bad Request",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{Base_URL}}submitAnswer/0/answers",
+            "description": "Invalid puzzle ID: send id=0.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"stageId\": 1,\n  \"answer\": \"3556\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"message\": \"Invalid puzzle ID.\"\n}"
+        },
+        {
+          "name": "400 - Bad Request",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{Base_URL}}submitAnswer/1/answers",
+            "description": "Invalid stage ID: send stageId=0.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"stageId\": 0,\n  \"answer\": \"3556\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"message\": \"Invalid stage ID.\"\n}"
+        },
+        {
+          "name": "400 - Bad Request",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{Base_URL}}submitAnswer/1/answers",
+            "description": "Empty answer: send an empty string.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"stageId\": 1,\n  \"answer\": \"\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"message\": \"Enter an answer.\"\n}"
+        },
+        {
+          "name": "403 - Forbidden",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{Base_URL}}submitAnswer/2/answers",
+            "description": "Puzzle 2 is locked while puzzle 1 is unfinished. Start with a fresh server.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"stageId\": 1,\n  \"answer\": \"3556\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Forbidden",
+          "code": 403,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"message\": \"Complete all earlier puzzles before investigating this level.\"\n}"
+        },
+        {
+          "name": "404 - Not Found",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{Base_URL}}submitAnswer/999/answers",
+            "description": "Puzzle not found: send id=999.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"stageId\": 1,\n  \"answer\": \"3556\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Not Found",
+          "code": 404,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"message\": \"Puzzle not found.\"\n}"
+        },
+        {
+          "name": "404 - Not Found",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{Base_URL}}submitAnswer/1/answers",
+            "description": "Stage not found: send stageId=999.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"stageId\": 999,\n  \"answer\": \"3556\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Not Found",
+          "code": 404,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"message\": \"Stage not found.\"\n}"
+        },
+        {
+          "name": "409 - Conflict",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{Base_URL}}submitAnswer/1/answers",
+            "description": "Puzzle 1 already solved: complete all three stages before sending.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"stageId\": 1,\n  \"answer\": \"3556\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Conflict",
+          "code": 409,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"message\": \"Puzzle already solved.\"\n}"
+        },
+        {
+          "name": "409 - Conflict",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{Base_URL}}submitAnswer/1/answers",
+            "description": "Stage 2 is not current while stage 1 is unfinished.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"stageId\": 2,\n  \"answer\": \"heisenberg\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Conflict",
+          "code": 409,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"message\": \"This stage is not current.\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "requestHints",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{Base_URL}}requestHints/1/hint",
+        "description": "Reveals the next hint for puzzle 1 stage 1. hintId is its zero-based array index. Each request consumes one hint; restart Express to reset progress.\n\nSaved examples cover every controller response branch. Examples sharing a status have the same requested name; open the example request description to see its scenario and setup. Examples are saved snapshots; Send runs against live server progress.",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"stageId\": 1\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "name": "200 - OK",
+          "originalRequest": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{Base_URL}}requestHints/1/hint",
+            "description": "First stage 1 hint: hintId=0 and one hint remains.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"stageId\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"hintId\": 0,\n  \"hint\": \"Hint 1: Combine the two atomic numbers side-by-side: Br + Ba.\",\n  \"puzzle\": {\n    \"id\": 1,\n    \"title\": \"The Heisenberg Formula\",\n    \"story\": \"You walk into the underground lab beneath the industrial laundry. The main control terminal is locked, and a timer is counting down. Walter left three encoded safety prompts across the lab equipment to ensure only someone with acute chemical knowledge can reboot the ventilation system.\",\n    \"totalStages\": 3,\n    \"completedStages\": 0,\n    \"solved\": false,\n    \"locked\": false,\n    \"currentStage\": {\n      \"id\": 1,\n      \"title\": \"Stage 1: The Periodic Combination\",\n      \"question\": \"What is the 4-digit security PIN to unlock the lab door terminal?\",\n      \"clues\": [\n        \"A sticky note on the barrel reads: 'Atomic number of Bromine (Br) followed by the atomic number of Barium (Ba)'.\",\n        \"The element chart on the wall shows: Bromine (Br) = 35, Barium (Ba) = 56.\"\n      ],\n      \"revealedHints\": [\n        {\n          \"hintId\": 0,\n          \"hint\": \"Hint 1: Combine the two atomic numbers side-by-side: Br + Ba.\"\n        }\n      ],\n      \"hintsRemaining\": 1\n    }\n  }\n}"
+        },
+        {
+          "name": "400 - Bad Request",
+          "originalRequest": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{Base_URL}}requestHints/0/hint",
+            "description": "Invalid puzzle ID: send id=0.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"stageId\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"message\": \"Invalid puzzle ID.\"\n}"
+        },
+        {
+          "name": "400 - Bad Request",
+          "originalRequest": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{Base_URL}}requestHints/1/hint",
+            "description": "Invalid stage ID: send stageId=0.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"stageId\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"message\": \"Invalid stage ID.\"\n}"
+        },
+        {
+          "name": "403 - Forbidden",
+          "originalRequest": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{Base_URL}}requestHints/2/hint",
+            "description": "Puzzle 2 is locked while puzzle 1 is unfinished. Start with a fresh server.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"stageId\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Forbidden",
+          "code": 403,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"message\": \"Complete all earlier puzzles before investigating this level.\"\n}"
+        },
+        {
+          "name": "404 - Not Found",
+          "originalRequest": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{Base_URL}}requestHints/999/hint",
+            "description": "Puzzle not found: send id=999.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"stageId\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Not Found",
+          "code": 404,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"message\": \"Puzzle not found.\"\n}"
+        },
+        {
+          "name": "404 - Not Found",
+          "originalRequest": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{Base_URL}}requestHints/1/hint",
+            "description": "Stage not found: send stageId=999.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"stageId\": 999\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Not Found",
+          "code": 404,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"message\": \"Stage not found.\"\n}"
+        },
+        {
+          "name": "409 - Conflict",
+          "originalRequest": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{Base_URL}}requestHints/1/hint",
+            "description": "Puzzle 1 already solved: complete all three stages before sending.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"stageId\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Conflict",
+          "code": 409,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"message\": \"Puzzle already solved.\"\n}"
+        },
+        {
+          "name": "409 - Conflict",
+          "originalRequest": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{Base_URL}}requestHints/1/hint",
+            "description": "Stage 2 is not current while stage 1 is unfinished.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"stageId\": 2\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Conflict",
+          "code": 409,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"message\": \"This stage is not current.\"\n}"
+        },
+        {
+          "name": "409 - Conflict",
+          "originalRequest": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{Base_URL}}requestHints/1/hint",
+            "description": "No hints remain: request both stage 1 hints before sending again.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"stageId\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Conflict",
+          "code": 409,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"message\": \"No hints remain for this stage.\"\n}"
+        }
+      ]
+    }
+  ]
+}

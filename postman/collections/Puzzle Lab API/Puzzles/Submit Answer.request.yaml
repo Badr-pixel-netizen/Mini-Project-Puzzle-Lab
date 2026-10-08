@@ -1,0 +1,15 @@
+$kind: http-request
+method: POST
+url: '{{baseUrl}}/api/submitAnswer/{{puzzleId}}/answers'
+description: 'Submits an answer for a specific stage of a puzzle. Returns `{ correct, puzzle }`. Returns 400 for invalid IDs or missing answer, 403 if locked, 404 if not found, 409 if already solved or stage is not current.'
+order: 4000
+headers:
+  - key: Content-Type
+    value: application/json
+body:
+  type: json
+  content: |-
+    {
+      "stageId": 1,
+      "answer": "your answer here"
+    }

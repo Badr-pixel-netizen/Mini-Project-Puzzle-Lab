@@ -1,0 +1,5 @@
+$kind: http-request
+method: GET
+url: '{{baseUrl}}/api/getAllPuzzles'
+description: 'Returns a list of all puzzles with their progress summary (id, title, summary, locked, totalStages, completedStages, solved).'
+order: 1000

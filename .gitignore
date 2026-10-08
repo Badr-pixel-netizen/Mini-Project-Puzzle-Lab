@@ -1,0 +1,13 @@
+# Dependencies, generated output, machine files
+node_modules/
+dist/
+dist-ssr/
+coverage/
+*.log
+*.tsbuildinfo
+.DS_Store
+.env
+.env.*
+!.env.example
+.vscode/
+.github/
